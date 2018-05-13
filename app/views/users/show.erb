@@ -1,0 +1,51 @@
+
+<% if flash.has?(:message) %>
+<h2><%= flash[:message] %></h2>
+<% end %>
+
+<h1>Welcome, <em><%= current_user.name.upcase %></em> </h1>
+<br>
+<h2>Your recipes from Gastronome:</h2>
+<br>
+<% current_user.recipes.reverse_each do |recipe| %>
+<h1> Yum! <strong><%= recipe.name.upcase %></strong></h1>
+<h2 style="font-size: 2.4em; font-style:italic;"><sup>Flavors</sup>  <%= recipe.content %></h2>
+<h1><em><sub>GASTRO</sub></em> gave you these recipe suggestions </h1>
+<br>
+<ul style="text-align:left;"><% recipe.rec.split("***").each do |rec| %>
+  <br>
+<li> <%=rec %></li>
+ <p></p>
+ <br>
+ <br>
+<% end %></ul>
+<a href="/gastro/<%= recipe.slug %>/edit">Edit</a>
+&nbsp; | &nbsp;
+<a href="/gastro/<%= recipe.slug %>/delete">Delete</a>
+<br>
+<br>
+<br>
+<% end %>
+<br>
+<br>
+<h2 style="font-size:2em;">Search Recipes</h2>
+<!-- search query by recipe??  -->
+<form class="search_by_recipe" action="/recipe/search" method="post">
+<input type="text" name="slug" value="">
+  <br>
+  <br>
+<input type="submit" value="Search Recipes">
+<br>
+<br>
+</form>
+<a href="/recipes/new">Create New</a>
+&nbsp; | &nbsp;
+<a href="/recipes">Home</a>
+&nbsp; | &nbsp;
+<a href="/logout">Log Out</a>
+
+<br>
+<br>
+<footer style="font-size:1.7em;">GASTRO: Built with <strong>LOVE</strong></footer>
+<br>
+<p></p>

@@ -1,3 +1,3 @@
-class Ingredient
-  
+class Ingredient < ActiveRecord::Base
+
 end
